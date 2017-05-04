@@ -1,0 +1,26 @@
+$fontFamily: "Arial";
+$fontSize: 11px;
+
+.ps-container {
+  font-family: $fontFamily;
+  font-size: $fontSize;
+}
+
+.ps-container {
+  input, select, button {
+    font-size: $fontSize;
+  }
+}
+
+.ps-flex-horiz {
+  display: flex;
+}
+
+.ps-flex-vert {
+  display: flex;
+  flex-direction: column;
+}
+
+.ps-flex-fill {
+  flex-grow: 1;
+}

@@ -1,0 +1,210 @@
+<html>
+<head>
+  <script src='../playscriptDep.js'></script>
+  <script src='../playscript.js'></script>
+  <script src='../playscriptWidgets.js'></script>
+  <style>
+    .left, .right {
+      position : absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px;
+    }
+    .left {
+      right: 50%;
+      background-color: #ddd;
+    }
+    .right {
+      left: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div class='left'>
+  </div>
+  <div class='right'>
+    <div>
+      <button name="save">Save</button>
+      <button name="cancel">Cancel</button>
+    </div>
+    <div class='editor'></div>
+  </div>
+<script>
+
+var types = {
+  TYPE_A: {
+    info: {
+      title: "Info",
+      custom: false,
+      content: {
+        name: { type: "string" },
+        extends: { type: "asset", assetType: "TYPE_A" },
+        id: { type: "string", readonly: true }
+      }
+    },
+    properties: {
+      custom: false,
+      content: {
+        testVector: { type: "vector" },
+        testBoolean: { type: "boolean" },
+        testInt: { type: "integer" },
+        testDouble: { type: "double" },
+        testStringList: { type: "stringlist" }
+      }
+    },
+    hooks: {
+      custom: false,
+      content: {
+        testFunc: { type: "function" }
+      }
+    },
+    data: {
+      custom: true,
+      customTypes: ["string", "integer", "double", "boolean", "vector"],
+      defaultType: "string"
+    },
+    functions: {
+      custom: true,
+      customTypes: ["function"],
+      defaultType: "function"
+    }
+  },
+  TYPE_B: {
+    info: {
+      title: "Info",
+      custom: false,
+      content: {
+        name: { type: "string" },
+        extends: { type: "asset", assetType: "TYPE_B" },
+        id: { type: "string", readonly: true }
+      }
+    },
+    properties: {
+      custom: false,
+      content: {
+        testVector: { type: "vector" }
+      }
+    },
+    hooks: {
+      custom: false,
+      content: {
+        testFunc: { type: "function" }
+      }
+    },
+    data: {
+      custom: true,
+      customTypes: ["string", "integer", "double", "boolean", "vector"],
+      defaultType: "string"
+    },
+    functions: {
+      custom: true,
+      customTypes: ["function"],
+      defaultType: "function"
+    }
+  }
+};
+
+function resetElement(selector) {
+    var oldEle = document.querySelector(selector);
+    var newEle = oldEle.cloneNode(true);
+    oldEle.parentNode.replaceChild(newEle, oldEle);
+    return newEle;
+}
+
+function clearEditor() {
+  resetElement("button[name=save]");
+  resetElement("button[name=cancel]");
+  document.querySelector('.editor').innerHTML = "";
+}
+
+window.onload = function() {
+  var assetLibrary = playscript.assetLibrary();
+
+  var left = document.querySelector(".left");
+
+  Object.keys(types).forEach(function(type) {
+
+    var model = types[type];
+
+    var heading = document.createElement("div");
+    var title = document.createElement("span");
+    title.textContent = type;
+    heading.appendChild(title);
+    var addBtn = document.createElement("button");
+    addBtn.name = "add-TYPE_A";
+    addBtn.textContent = "+";
+    heading.appendChild(addBtn);
+    left.appendChild(heading);
+
+    var list = document.createElement("ul");
+    left.appendChild(list);
+
+    assetLibrary.addType(type, model);
+
+    function refreshList() {
+      list.innerHTML = "";
+
+      assetLibrary.idList(type).forEach(function(id) {
+        var li = document.createElement("li");
+        var span = document.createElement("span");
+        span.textContent = assetLibrary.getById(type, id).info.name;
+        li.appendChild(span);
+        var editBtn = document.createElement("button");
+        editBtn.textContent = "Edit";
+        editBtn.addEventListener("click", function() {
+
+          clearEditor();
+
+          var editor = new playscriptWidgets.ModelEditor(
+            document.querySelector('.editor'), model, assetLibrary.getById(type, id)
+          );
+
+          resetElement("button[name=save]").addEventListener("click", function() {
+            assetLibrary.update(type, editor.getData());
+            refreshList();
+            clearEditor();
+          });
+
+          resetElement("button[name=cancel]").addEventListener("click", function() {
+            clearEditor();
+          });
+        });
+        var delBtn = document.createElement("button");
+        delBtn.textContent = "X";
+        delBtn.addEventListener("click", function() {
+          assetLibrary.delete(type, id);
+          clearEditor();
+          refreshList();
+        })
+        li.appendChild(editBtn);
+        li.appendChild(delBtn);
+        list.appendChild(li);
+      });
+    }
+
+    addBtn.addEventListener("click", function() {
+
+        clearEditor();
+
+        var editor = new playscriptWidgets.ModelEditor(
+          document.querySelector('.editor'), model, {}
+        );
+
+        resetElement("button[name=save]").addEventListener("click", function() {
+          assetLibrary.add(type, editor.getData());
+          clearEditor();
+          refreshList();
+        });
+
+        resetElement("button[name=cancel]").addEventListener("click", function() {
+          clearEditor();
+        });
+    });
+
+  });
+}
+</script>
+</body>
+</html>

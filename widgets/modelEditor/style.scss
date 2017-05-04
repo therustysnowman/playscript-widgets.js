@@ -1,0 +1,86 @@
+
+.ps-section {
+  margin-top: 20px;
+}
+.ps-section:first-child {
+  margin-top: 0;
+}
+
+.ps-sectionHeading {
+  border-bottom: 1px solid black;
+  display: flex;
+}
+
+.ps-sectionTitle {
+  flex-grow: 1;
+  font-weight: bold;
+}
+
+.ps-sectionControls {
+}
+
+.ps-modelEditor-field {
+  display: flex;
+  margin-top: 10px;
+}
+
+.ps-modelEditor-fieldLabel {
+  min-width: 100px;
+  width: 100px;
+  text-overflow: clip;
+  margin-right: 10px;
+}
+
+.ps-modelEditor-fieldInputs {
+  flex-grow: 1;
+}
+
+.ps-modelEditor-fieldControls {
+  button {
+    margin-left: 5px;
+  }
+}
+
+.ps-modelEditor-fieldExtension {
+  width: 100%;
+  background-color: red;
+  height: 20px;
+}
+
+.ps-modelEditor-fieldInputs {
+  input, select {
+    box-sizing: border-box;
+    width: 100%;
+  }
+}
+
+.ps-modelEditor-fieldInputs > button {
+  width: 100%;
+}
+
+.ps-functionEditor-editor {
+  min-width: 400px;
+  min-height: 300px;
+}
+
+.ps-modelEditor-fieldListItem {
+  margin-top: 5px;
+  display: flex;
+
+  input {
+    flex-grow: 1;
+    min-width: 10px;
+    margin-right: 5px;
+  }
+}
+
+.ps-modelEditor-fieldVectorItem {
+  margin-top: 5px;
+  display: flex;
+
+  input {
+    flex-grow: 1;
+    min-width: 10px;
+    margin-left: 5px;
+  }
+}

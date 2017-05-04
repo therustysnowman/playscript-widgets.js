@@ -1,0 +1,80 @@
+$menuHeight: 20px;
+$leftDockWidth: 100px;
+$rightDockWidth: 150px;
+$bottomDockHeight: 100px;
+
+$uiBorderColor: #bbb;
+$uiPanelColor: #eee;
+
+@import "../../style/common";
+
+.ps-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  border-bottom: 1px solid $uiBorderColor;
+  background-color: $uiPanelColor;
+  box-sizing: border-box;
+}
+
+.ps-container-outer {
+  position: absolute;
+  top: $menuHeight;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+}
+
+.ps-dock-left {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: $leftDockWidth;
+  background-color: $uiPanelColor;
+  border-right: 1px solid $uiBorderColor;
+  box-sizing: border-box;
+}
+
+.ps-container-inner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: $leftDockWidth;
+  right: $rightDockWidth;
+  box-sizing: border-box;
+}
+
+.ps-dock-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: $rightDockWidth;
+  background-color: $uiPanelColor;
+  border-left: 1px solid $uiBorderColor;
+  box-sizing: border-box;
+}
+
+.ps-stage {
+  position: absolute;
+  top: 0;
+  bottom: 150px;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+}
+
+.ps-dock-bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: $bottomDockHeight;
+  background-color: $uiPanelColor;
+  border-top: 1px solid $uiBorderColor;
+  box-sizing: border-box;
+}

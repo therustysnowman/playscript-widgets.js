@@ -1,0 +1,35 @@
+{
+  "name": "playscript.js",
+  "version": "0.0.0",
+  "description": "",
+  "main": "lib/playscript.js",
+  "scripts": {
+    "build": "node_modules/.bin/webpack",
+    "serve": "node_modules/.bin/webpack-dev-server",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/therustysnowman/playscript.js.git"
+  },
+  "author": "Justin Klim",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/therustysnowman/playscript.js/issues"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "css-loader": "^0.28.0",
+    "html-loader": "^0.4.5",
+    "mocha": "^3.2.0",
+    "node-sass": "^4.5.2",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.1",
+    "webpack": "~2.3.2",
+    "webpack-dev-server": "^2.4.2"
+  },
+  "dependencies": {
+    "p2": "^0.7.1",
+    "pixi.js": "^4.4.4"
+  }
+}

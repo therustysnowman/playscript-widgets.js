@@ -1,0 +1,55 @@
+
+.ps-dialog {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000000;
+  background-color: rgba(#aaa, 0.7);
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(#ccc, 0.7),
+    rgba(#ccc, 0.7) 10px,
+    rgba(#aaa, 0.7) 10px,
+    rgba(#aaa, 0.7) 20px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ps-dialog-spacerTop {
+  align-self: flex-start;
+}
+
+.ps-dialog-spacerBottom {
+  align-self: flex-end;
+}
+
+.ps-dialog-container {
+  border: 2px solid #888;
+  background-color: #ddd;
+}
+
+.ps-dialog-title {
+  padding: 5px;
+  background-color: #ccc;
+  text-align: left;
+  font-weight:  bold;
+  font-size: 1.1em;
+}
+
+.ps-dialog-content {
+  padding: 5px;
+}
+
+.ps-dialog-controls {
+  padding: 5px;
+  padding-top: 0;
+  text-align: right;
+}
+
+.ps-dialog-controls button {
+  margin-left: 5px;
+}
